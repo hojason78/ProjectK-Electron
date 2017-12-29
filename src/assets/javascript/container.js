@@ -1,56 +1,60 @@
-var currentContainer, clicked, highestZI;
+var currentContainer, clicked;
+var highestZI = 0;
+var containerScriptDoneLoading = false;
 
 window.onload = () => {
     function addListenerToAllContainers() {
         var containers = document.getElementsByClassName("container");
-        
-        for(var i = 0; i < containers.length; ++i) {
+
+        for (var i = 0; i < containers.length; ++i) {
             var currentCont = containers[i];
-            currentCont.style.zIndex = i + 1;
+            console.log(currentCont);
+            currentCont.style.zIndex = highestZI++;
             currentCont.style.position = "absolute";
             currentCont.style.backgroundColor = "#FFF";
+            currentCont.style.marginLeft = "2em";
+            currentCont.style.marginTop = "4em";
             currentCont.onmousedown = (omd) => {
                 console.log("Click");
                 currentContainer = omd.srcElement;
-                click = true;
-                var elements = document.body.getElementsByTagName("*");
-                for(var z = 0; z < elements.length; ++z) {
-                    console.log("called");
-                    if(elements[z].style.zIndex === undefined) {
-                        console.log("undefined out")
-                        return;
-                    }
-                    if(elements[z].style.zIndex > highestZI) {
-                        highestZI = elements[z].styles.zIndex;
-                        console.log("Found new highest z-index " + highestZI);
-                    }
-                    console.log("no conditions met.")
+                while (!(currentContainer.className === "container")) {
+                    currentContainer = currentContainer.parentElement;
                 }
-                omd.srcElement.style.zIndex = ++highestZI;
+                click = true;
+                if(omd.srcElement.style.zIndex < highestZI) {
+                    omd.srcElement.style.zIndex = highestZI++;
+                }
             }
         }
-        
+
         document.onmousemove = (omm) => {
-            console.log(omm.clientY);
-            console.log(omm.clientX);
-            if(clicked = true && currentContainer != null) {
-                console.log("Test " + omm.srcElement.tagName);
-                /*if(omm.srcElement.tagName != "DIV") {
-                    console.log("Nope.");
-                    console.log(omm.srcElement.tagName);
-                    return;
-                }*/
+            if (document.selection) {
+                document.selection.empty();
+            } else if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+            }
+            //console.log(omm.clientY);
+            //console.log(omm.clientX);
+            if (clicked = true && currentContainer != null) {
+                console.log(clicked + currentCont);
                 //currentContainer.style.transform = "translate(" + omm.clientX + "px, " + omm.clientY + "px)";
-                currentContainer.style.marginLeft = (omm.clientX - 50) + "px";
-                currentContainer.style.marginTop = (omm.clientY - 50) + "px";
+                var l = omm.clientX - (currentContainer.clientWidth / 2);
+                var t = omm.clientY - (currentContainer.clientHeight / 2);
+                //console.log("debug " + l + " " + t);
+                //console.log("+ " + omm.clientX + " " + omm.clientY);
+                //console.log("++ " + currentContainer.clientWidth + " " + currentContainer.clientHeight);
+                currentContainer.style.marginLeft = (l) + "px";
+                currentContainer.style.marginTop = (t) + "px";
             }
         }
-        
+
         document.onmouseup = (event) => {
             console.log("Clack");
             currentContainer = null;
             click = false;
         }
+        
+        containerScriptDoneLoading = true;
     }
     addListenerToAllContainers();
-} 
+}

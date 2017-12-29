@@ -12,6 +12,7 @@ body {
 .header {
     pointer-events: none;
     z-index: 100000;
+    background-color: aqua;
 }
 
 .header .menuBar {
@@ -23,14 +24,17 @@ body {
     top: 0px;
     left: 0px;
     right: 0px;
-    background-color: #FFF;
+    background-color: #9f9f;
     width: 100%;
-    line-height: 0.745em;
+    line-height: 0.5em;
+    border-bottom: solid #8dbf8d 1px;
 }
 
 .menuBar {
     margin-left: 2em;
     padding-right: 2em;
+    width: 100%;
+    background-color: aqua;
 }
 
 h2 {
@@ -41,18 +45,20 @@ h2 {
 }
 
 .wrapper {
-    margin-top: 3em;
-    margin-left: 2em;
+    /*margin-top: 3em;
+    margin-left: 2em;*/
 }
 
 .container {
-    /*ponter-events: none;*/
     border: solid gray 0.5px;
-    border-radius: 2px;
+    border-radius: 0;
     min-height: 5em;
     min-width: 5em;
-    /*width: 100px;
-    height: 100px;*/
+    width: auto;
+    height: auto;
+    display: block;
+    overflow: auto;
+    position: absolute;
     clear: both;
 }
 
