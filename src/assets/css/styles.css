@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans);
+
+body {
+    /*background-color: #4C4CFF;*/
+    font-family: 'PT Sans', sans-serif;
+    letter-spacing: 0.1em;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header {
+    pointer-events: none;
+    z-index: 100000;
+}
+
+.header .menuBar {
+    margin: 0px;
+    padding-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #FFF;
+    width: 100%;
+    line-height: 0.745em;
+}
+
+.menuBar {
+    margin-left: 2em;
+    padding-right: 2em;
+}
+
+h2 {
+    font-weight: 3000;
+    text-transform: uppercase;
+    vertical-align: center;
+    font-size: 15px;
+}
+
+.wrapper {
+    margin-top: 3em;
+    margin-left: 2em;
+}
+
+.container {
+    /*ponter-events: none;*/
+    border: solid gray 0.5px;
+    border-radius: 2px;
+    min-height: 5em;
+    min-width: 5em;
+    /*width: 100px;
+    height: 100px;*/
+    clear: both;
+}
+
+.contentContainer {
+    margin: 5px;
+    pointer-events: none;
+    z-index: -1;
+}
