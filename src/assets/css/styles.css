@@ -12,7 +12,7 @@ body {
 .header {
     pointer-events: none;
     z-index: 100000;
-    background-color: aqua;
+    background-color: white;
 }
 
 .header .menuBar {

@@ -1,11 +1,15 @@
-const {app, BrowserWindow, globalShortcut} = require('electron')
+const {app, BrowserWindow, globalShortcut, ipcMain} = require('electron')
 const nativeImage = require('electron').nativeImage
 const path = require('path')
 const url = require('url')
 
+var child = require('child_process').execFile;
+
 let win
 
 function createWindow() {
+    
+    console.log("Creating window")
     
     win = new BrowserWindow({
         title: "Project K",
@@ -39,6 +43,14 @@ function createWindow() {
     
     })
     
+    win.setAlwaysOnTop(true);
+    
+    win.setIgnoreMouseEvents(true, {forward: true})
+    win.setIgnoreMouseEvents(false, {forward: true})
+    win.reload()
+    win.setIgnoreMouseEvents(true, {forward: true})
+    
+    
     globalShortcut.register('Escape', function(){
         win = null
         app.quit()
@@ -60,3 +72,26 @@ app.on('activate', () => {
         createWindow()
     }
 })
+
+var clickThrough = true;
+
+ipcMain.on('toggle-clickthrough', (event, arg) => {
+    console.log(arg);
+    if(arg === "true") {
+        clickThrough = true;
+    } else if (arg === "false") {
+        clickThrough = false;
+    } else {
+        clickThrough = !clickThrough;
+    }
+    console.log(clickThrough);
+    win.setIgnoreMouseEvents(clickThrough, {forward: true})
+    console.log("Recieved wnbu")
+})
+
+ipcMain.on('run-program', (event, arg) => {
+    child(arg, "", (err, data) => {
+        console.log(err);
+        console.log(data);
+    });
+});
