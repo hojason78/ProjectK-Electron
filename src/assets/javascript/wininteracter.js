@@ -7,7 +7,7 @@ var remote, ipcRenderer;
 try {
     remote = require('electron').remote;
     var ipcRenderer = require('electron').ipcRenderer;
-} catch(err) { console.log(err.message) }
+} catch(err) { console.log(err.message + ", electron not detected, clickthrough functionality disabled.") }
 
 function trueReady() {
     ipcRenderer.send('run-program', 'cmd.exe');
@@ -43,6 +43,12 @@ function onReady() {
     }
 }
 
-window.onload = () => {
-    onReady();
+function start() {
+    setTimeout(() => {
+        console.log("Alright loading up..");
+        onReady();
+        console.log("Working....");
+    }, 1000);
 }
+
+onloadfuncs.push(start);
