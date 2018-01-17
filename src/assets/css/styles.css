@@ -64,6 +64,6 @@ h2 {
 
 .contentContainer {
     margin: 5px;
-    pointer-events: none;
+    /*pointer-events: none;*/
     z-index: -1;
 }
