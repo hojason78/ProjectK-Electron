@@ -10,7 +10,7 @@ try {
 } catch(err) { console.log(err.message + ", electron not detected, clickthrough functionality disabled.") }
 
 function trueReady() {
-    ipcRenderer.send('run-program', 'cmd.exe');
+    //ipcRenderer.send('run-program', 'cmd.exe');
     ipcRenderer.send('toggle-clickthrough', 'false');
     /*window.addEventListener("mouseenter", (e) => {
         var target = e.target || e.srcElement;
@@ -32,6 +32,16 @@ function trueReady() {
             console.log("No");
         }
     }*/
+    setInterval(() => {
+        ipcRenderer.send("toggle-clickthrough", "false");
+        var elementOvers = document.querySelectorAll(":hover");
+        var elementOver = elementOvers[elementOvers.length-1];
+        if(elementOver === undefined) return;
+        if(elementOver.tagName == "HTML") {
+            //console.log("YES!");
+            ipcRenderer.send("toggle-clickthrough", "true");
+        }
+    }, 100);
 }
 
 function onReady() {

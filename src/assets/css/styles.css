@@ -21,7 +21,7 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     position: fixed;
-    top: 0px;
+    bottom: 0px;
     left: 0px;
     right: 0px;
     background-color: #9f9f;
@@ -63,6 +63,7 @@ h2 {
 }
 
 .contentContainer {
+    padding: 5px;
     margin: 5px;
     /*pointer-events: none;*/
     z-index: -1;

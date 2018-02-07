@@ -33,7 +33,7 @@ function addListenerToAllContainers() {
                 currentContainer = currentContainer.parentElement;
             }*/
             if (currentContainer.className === "container" || currentContainer.className === "contentContainer") {
-                while (!(currentContainer.className === "container")) {
+                while (!(currentContainer.className.contains("container"))) {
                     currentContainer = currentContainer.parentElement;
                 }
             }
@@ -93,7 +93,7 @@ function initContainers() {
 function getAvailableContainer() {
     allContainers = document.getElementsByClassName("contentContainer");
     for (var x = 0; x < allContainers.length; x++) {
-        if (allContainers[x].innerHTML === "") {
+        if (allContainers[x].innerHTML === "" && !allContainers[x].classList.contains("inuse")) {
             return allContainers[x];
         } else if ((x + 1) === allContainers.length) {
             var canvas = document.getElementsByClassName("canvas")[0];

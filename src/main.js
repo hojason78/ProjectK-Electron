@@ -15,7 +15,8 @@ function createWindow() {
         title: "Project K",
         icon: path.join(__dirname, 'assets/icon.png'),
         frame: false,
-        transparent: true
+        transparent: true,
+        alwaysOnTop: true
     })
     
     win.maximize()
@@ -76,7 +77,12 @@ app.on('activate', () => {
 var clickThrough = true;
 
 ipcMain.on('toggle-clickthrough', (event, arg) => {
-    console.log(arg);
+    //console.log(arg);
+    if(arg === "get") {
+        //console.log("returning");
+        event.returnValue = clickThrough.toString;
+        return;
+    }
     if(arg === "true") {
         clickThrough = true;
     } else if (arg === "false") {
@@ -84,9 +90,10 @@ ipcMain.on('toggle-clickthrough', (event, arg) => {
     } else {
         clickThrough = !clickThrough;
     }
-    console.log(clickThrough);
-    win.setIgnoreMouseEvents(clickThrough, {forward: true})
-    console.log("Recieved wnbu")
+    //console.log(clickThrough);
+    //console.log("Recieved wnbu");
+    if(win === null || win === undefined) return;
+    win.setIgnoreMouseEvents(clickThrough, {forward: true});
 })
 
 ipcMain.on('run-program', (event, arg) => {
