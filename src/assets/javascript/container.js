@@ -1,19 +1,16 @@
+/* Stores the containers currently selected, or recently made */
 var currentContainer, clicked;
+/* All containers stored */
+var allContainers;
+/* For making containers go on top of each other on click */
 var highestZI = 0;
 
-var allContainers;
-
+/* Adds listeners to containers for interactiveness */
 function addListenerToAllContainers() {
-    console.log("Adding listeners to containers");
-
     var containers = document.getElementsByClassName("container");
-
-    //console.log(containers + containers.length);
-
+    
     for (var i = 0; i < containers.length; ++i) {
-        console.log("Container " + i);
         var currentCont = containers[i];
-        //console.log(currentCont);
         currentCont.style.zIndex = highestZI++;
         if (currentCont.style.position !== "absolute") {
             currentCont.style.position = "absolute";
@@ -27,11 +24,7 @@ function addListenerToAllContainers() {
             currentCont.style.marginTop = (4 + (currentCont.style.height == "") ? ((highestZI == 1 || highestZI >= 5) ? 4 : highestZI * 6) : currentCont.style.minHeight) + "em";
         }
         currentCont.onmousedown = (omd) => {
-            console.log("Click");
             currentContainer = omd.srcElement;
-            /*while (!(currentContainer.className === "container")) {
-                currentContainer = currentContainer.parentElement;
-            }*/
             if (currentContainer.className === "container" || currentContainer.className === "contentContainer") {
                 while (!(currentContainer.className.contains("container"))) {
                     currentContainer = currentContainer.parentElement;
@@ -42,11 +35,8 @@ function addListenerToAllContainers() {
                 omd.srcElement.style.zIndex = highestZI++;
             }
         }
-        if (currentCont.children.length > 0) {
-            continue;
-        }
+        if (currentCont.children.length > 0) { continue; }
         var containerInContainer = document.createElement("div");
-        console.log("Adding container");
         containerInContainer.className = "contentContainer";
         currentCont.appendChild(containerInContainer);
     }
@@ -59,7 +49,7 @@ function initContainers() {
         //console.log(omm.clientY);
         //console.log(omm.clientX);
         if (clicked = true && currentContainer != null) {
-            console.log(clicked + currentContainer);
+            //console.log(clicked + currentContainer);
             //currentContainer.style.transform = "translate(" + omm.clientX + "px, " + omm.clientY + "px)";
             //Working
             var l = omm.clientX - (currentContainer.clientWidth / 2);
@@ -81,13 +71,10 @@ function initContainers() {
     }
 
     document.onmouseup = (event) => {
-        console.log("Clack");
         currentContainer = null;
         click = false;
     }
-
     addListenerToAllContainers();
-
 }
 
 function getAvailableContainer() {
