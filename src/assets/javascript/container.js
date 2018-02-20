@@ -8,7 +8,7 @@ var highestZI = 0;
 /* Adds listeners to containers for interactiveness */
 function addListenerToAllContainers() {
     var containers = document.getElementsByClassName("container");
-    
+
     for (var i = 0; i < containers.length; ++i) {
         var currentCont = containers[i];
         currentCont.style.zIndex = highestZI++;
@@ -24,6 +24,7 @@ function addListenerToAllContainers() {
             currentCont.style.marginTop = (4 + (currentCont.style.height == "") ? ((highestZI == 1 || highestZI >= 5) ? 4 : highestZI * 6) : currentCont.style.minHeight) + "em";
         }
         currentCont.onmousedown = (omd) => {
+            console.log(omd);
             currentContainer = omd.srcElement;
             if (currentContainer.className === "container" || currentContainer.className === "contentContainer") {
                 while (!(currentContainer.className.contains("container"))) {
@@ -35,7 +36,9 @@ function addListenerToAllContainers() {
                 omd.srcElement.style.zIndex = highestZI++;
             }
         }
-        if (currentCont.children.length > 0) { continue; }
+        if (currentCont.children.length > 0) {
+            continue;
+        }
         var containerInContainer = document.createElement("div");
         containerInContainer.className = "contentContainer";
         currentCont.appendChild(containerInContainer);
@@ -79,26 +82,6 @@ function initContainers() {
 
 function getAvailableContainer() {
     allContainers = document.getElementsByClassName("contentContainer");
-    for (var x = 0; x < allContainers.length; x++) {
-        if (allContainers[x].innerHTML === "" && !allContainers[x].classList.contains("inuse")) {
-            return allContainers[x];
-        } else if ((x + 1) === allContainers.length) {
-            var canvas = document.getElementsByClassName("canvas")[0];
-            var newDiv = document.createElement("div");
-            newDiv.className = "container";
-            canvas.appendChild(newDiv);
-            var newDivTwo = document.createElement("div");
-            newDivTwo.className = "contentContainer";
-            newDiv.appendChild(newDivTwo);
-            addListenerToAllContainers();
-            return newDivTwo;
-        } else {
-            continue;
-        }
-    }
-}
-
-function test() {
     var canvas = document.getElementsByClassName("canvas")[0];
     var newDiv = document.createElement("div");
     newDiv.className = "container";
@@ -107,6 +90,7 @@ function test() {
     newDivTwo.className = "contentContainer";
     newDiv.appendChild(newDivTwo);
     addListenerToAllContainers();
+    return newDivTwo;
 }
 
 onloadfuncs.push(initContainers);
