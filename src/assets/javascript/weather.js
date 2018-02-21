@@ -6,11 +6,11 @@ var weatherWin,
 
 var tempType = "f";
 
-var wData;
+var wData, randPicture;
 
 class Weather {
     static e(w) {
-        var x = w + " asdf ";
+        w = w + "";
         if (w.contains("snow") || w.contains("sleet") || w.contains("flurr")) {
             // Snow
             return "https://www.metaweather.com/static/img/weather/png/" + "sn" + ".png";
@@ -30,15 +30,55 @@ class Weather {
     }
     static setUpWWindow() {
         weatherWin.innerHTML = "";
-        var location = wData.query.results.channel.location;
-        var var1 = Util.makeElemInner("h4", location.city)
-        var1.style.fontSize = "14px";
-        var1.className = "wTitle";
-        weatherWin.appendChild(var1);
+
+        Weather.applyStyles();
 
         weatherDataDiv = Util.makeElem("div");
         weatherDataDiv.className = "wData";
         weatherWin.appendChild(weatherDataDiv);
+        
+        // Location
+        var var1 = Util.makeElemInner("h4", "Unknown")
+        var1.style.fontSize = "14px";
+        var1.style.margin = "0";
+        var1.style.marginTop = "1em";
+        var1.className = "wLocation";
+        weatherDataDiv.appendChild(var1);
+
+        // Image
+        var wImg = Util.makeElem("div");
+        wImg.style.height = "3em";
+        wImg.className = "wImage";
+        weatherDataDiv.appendChild(wImg);
+        
+        wImg.appendChild(Util.getLoadingCircle(""));
+        
+        // Today's weather div
+        var wTodayDiv = Util.makeElem("div");
+        wTodayDiv.className = "wDataToday";
+        wTodayDiv.style.fontSize = ".70em";
+        weatherDataDiv.appendChild(wTodayDiv);
+
+        // TW Summary
+        var wTSum = Util.makeElemInner("p", "Loading...");
+        wTSum.className = "wDataToday-sum";
+        wTodayDiv.appendChild(wTSum);
+
+        //End Today's weather div
+
+        var wTomDiv = Util.makeElem("div");
+        wTomDiv.className = "wDataTom";
+        wTomDiv.style.fontSize = ".5em";
+        weatherDataDiv.appendChild(wTomDiv);
+
+        var wTomDivSum = Util.makeElemInner("p", "Loading tomorrow's");
+        wTomDivSum.className = "wDataTom-sum";
+        wTomDiv.appendChild(wTomDivSum);
+
+        // Tomorrow's weather div
+
+
+        // End tomorrows
 
         var var2 = Util.makeElemInner("a", "Powered by Yahoo!");
         var2.className = "wSource";
@@ -49,39 +89,38 @@ class Weather {
     }
 
     static loadData() {
-        Weather.setUpWWindow();
-
         var tenDay = wData.query.results.channel.item.forecast;
         var cond = wData.query.results.channel.item.condition;
-        
-        var wImg = Util.makeElem("img");
-        wImg.src = Weather.e(cond.text);
-        wImg.style.marginTop = "-12px";
-        wImg.style.height = "3em";
-        weatherDataDiv.appendChild(wImg);
-        
-        var condition = Util.makeElemInner("div",
-            "" + cond.text +
+
+        var wLocation = weatherDataDiv.getElementsByClassName("wLocation")[0];
+        wLocation.innerHTML = wData.query.results.channel.location.city;
+
+        var wImg = weatherDataDiv.getElementsByClassName("wImage")[0];
+        wImg.innerHTML = "";
+        var wIcon = Util.makeElem("img");
+        var wCode = cond.code;
+        wIcon.src = "http://l.yimg.com/a/i/us/we/52/" + wCode + ".gif";//Weather.e(cond);
+        wIcon.style.height = "3em";
+        wIcon.style.filter = "hue-rotate(50deg)";
+        wImg.appendChild(wIcon);
+
+        var condition = weatherDataDiv.getElementsByClassName("wDataToday-sum")[0];
+        condition.innerHTML = cond.text +
             " - " +
             cond.temp + "&deg; " + tempType.toUpperCase() +
-            " | " + "<br />" +
+            "" + "<br />" +
             "<b>High: </b>" +
             tenDay[0].high +
-            " <b>Low: </b>" + tenDay[0].low + "<br /><br />");
-        condition.className = "wDataToday";
-        condition.style.fontSize = ".70em";
-        weatherDataDiv.appendChild(condition);
+            " <b>Low: </b>" + tenDay[0].low;
 
-        var conditionTomorrow = Util.makeElemInner("div",
-            "<b>Tomorrow: </b>" + tenDay[1].text +
+        console.log("tom");
+        
+        var conditionTomorrow = weatherDataDiv.getElementsByClassName("wDataTom-sum")[0];
+        conditionTomorrow.innerHTML = "<b>Tomorrow: </b>" + tenDay[1].text +
             " - " +
             "<b>H: </b>" +
             tenDay[1].high +
-            " <b>L: </b>" + tenDay[1].low + "<br /><br />");
-        conditionTomorrow.className = "wDataTomorrow";
-        conditionTomorrow.style.fontSize = ".5em";
-        weatherDataDiv.appendChild(conditionTomorrow);
-
+            " <b>L: </b>" + tenDay[1].low;
     }
 
     static getWeatherData() {
@@ -92,17 +131,30 @@ class Weather {
         $.get(request, function (data) {
             wData = data;
             console.log(data);
-            Weather.loadData();
+            Weather.setUpWWindow();
+            setTimeout(() => {
+                Weather.loadData();
+            }, 100);
         }, "json");
     }
 
     static getCity() {
-        $.get("https://ipinfo.io", function (response) {
-            city = response.city;
-            console.log("Got city. " + city);
-            console.log("Loading weather data");
-            Weather.getWeatherData();
-        }, "jsonp");
+        try {
+            $.get("https://ipinfo.io", function (response) {
+                city = response.city;
+                console.log("Got city. " + city);
+                console.log("Loading weather data");
+                Weather.getWeatherData();
+            }, "jsonp");
+        } catch (e) {
+            console.log("Fallback to another service");
+            $.get("https://freegeoip.net/json", function (response) {
+                city = response.city;
+                console.log("[FB] Got city. " + city);
+                console.log("[FB] Loading weather data");
+                Weather.getWeatherData();
+            });
+        }
     }
 
     static loadWData() {
@@ -114,15 +166,47 @@ class Weather {
         weatherWin.style.padding = ".3em";
         weatherWin.style.margin = "0";
         weatherWin.style.textAlign = "center";
-        weatherWin.style.backgroundColor = "#5C6BC0";
+        //weatherWin.style.backgroundColor = "#53CBFF";
+        weatherWin.style.backgroundImage = 'url("https://source.unsplash.com/random")';
+        weatherWin.style.backgroundAttachment = "fixed";
+        weatherWin.style.backgroundPosition = "center";
+        weatherWin.style.animation = "slide 200s linear infinite";
         weatherWin.style.color = "white";
+        weatherWin.style.width = "10em";
+        weatherWin.style.height = "11em";
+        weatherWin.style.border = "none";
+    }
+
+    /*static detectAndLoad() {
+        var v1 = document.getElementsByTagName("head")[0];
+        var scripts = v1.getElementsByTagName("link");
+        if (scripts.length > 0) {
+            for (var x = 0; x  < scripts.length; x++) {
+                if (scripts[x].getAttribute("href").contains("Material+Icons")) {
+                    console.log("Found Material Icon loaded.")
+                    return;
+                }
+            }
+        }
+        var v2 = Util.makeElem("link");
+        v2.setAttribute("href", "https://fonts.googleapis.com/icon?family=Material+Icons");
+        v2.setAttribute("rel", "stylesheet");
+        v1.appendChild(v2);
+        console.log("Loaded Material Icons");
+    }*/
+    
+    static loadRandomPicture() {
+        $.get("https://source.unsplash.com/random", function(response) {
+            randPicture = response;
+        }, json);
     }
 
     static onWReady() {
+        //console.log("Loading weather icons");
+        //Weather.detectAndLoad();
         console.log("Setting up weather window.");
         weatherWin = getAvailableContainer();
         Weather.loadWData();
-        Weather.applyStyles();
     }
 }
 

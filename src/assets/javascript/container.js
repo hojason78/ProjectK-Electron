@@ -78,6 +78,7 @@ function initContainers() {
         click = false;
     }
     addListenerToAllContainers();
+    
 }
 
 function getAvailableContainer() {
