@@ -31,7 +31,6 @@ class Weather {
     static setUpWWindow() {
         weatherWin.innerHTML = "";
 
-        Weather.applyStyles();
 
         weatherDataDiv = Util.makeElem("div");
         weatherDataDiv.className = "wData";
@@ -86,6 +85,7 @@ class Weather {
         var2.style.fontSize = "6px";
         weatherWin.appendChild(var2);
         var2.style.color = "white";
+        Weather.applyStyles();
     }
 
     static loadData() {
@@ -167,7 +167,7 @@ class Weather {
         weatherWin.style.margin = "0";
         weatherWin.style.textAlign = "center";
         //weatherWin.style.backgroundColor = "#53CBFF";
-        weatherWin.style.backgroundImage = 'url("https://source.unsplash.com/random")';
+        Weather.loadRandomPicture();
         weatherWin.style.backgroundAttachment = "fixed";
         weatherWin.style.backgroundPosition = "center";
         weatherWin.style.animation = "slide 200s linear infinite";
@@ -196,9 +196,14 @@ class Weather {
     }*/
     
     static loadRandomPicture() {
-        $.get("https://source.unsplash.com/random", function(response) {
+        weatherWin.style.backgroundImage = 'url("https://source.unsplash.com/random")';
+        // Temporary until I get unsplash api worked out
+        
+        /*$.get("https://source.unsplash.com/random", function(response) {
             randPicture = response;
-        }, json);
+            var pic = response.url.raw;
+            weatherWin.style.backgroundImage = 'url("' + pic + '")';
+        }, "jsonp");*/
     }
 
     static onWReady() {
