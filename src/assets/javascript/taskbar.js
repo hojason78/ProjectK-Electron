@@ -7,8 +7,8 @@ class Taskbar {
     static updateTime() {
         setInterval(() => {
             var docDate = new Date();
-            document.getElementsByClassName("tb-time")[0].innerHTML = docDate.getHours() + ":" + docDate.getMinutes() + " " + (docDate.getHours >= 12 ? 'PM' : 'AM');
-        }, 1000);
+            document.getElementsByClassName("tb-time")[0].innerHTML = docDate.getHours() + ":" + (docDate.getMinutes() < 10 ? "0" + docDate.getMinutes() : docDate.getMinutes()) + " " + (docDate.getHours >= 12 ? 'PM' : 'AM');
+        }, 5000);
     }
 
     static updateWifi() {
@@ -22,7 +22,7 @@ class Taskbar {
             } catch (e) {
                 document.getElementsByClassName("tb-wifi-status")[0].innerHTML = "perm_scan_wifi";
             }
-        }, 1000);
+        }, 10000);
     }
 }
 
