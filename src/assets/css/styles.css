@@ -20,9 +20,11 @@ body {
     background: linear-gradient(5deg, #536DFE, #53FFFF);
     font-family: 'PT Sans', sans-serif;
     margin: 0;
-    padding-right: 1em;
     padding-left: 1em;
     line-height: 2.2em;
+    position: fixed;
+    width: 99%;
+    bottom: 0;
 }
 
 .menuBarWrapper {
@@ -36,6 +38,7 @@ body {
     margin: 0;
     padding: 0;
     color: white;
+    list-style: none;
 }
 
 .menutitle {
@@ -50,6 +53,27 @@ body {
 
 .bar-items {
     float: right;
+    text-align: center;
+    line-height: 3em;
+    width: 3em;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Taskbar glance (time, power, etc.) */
+
+.glance {
+    width: 8em;
+}
+
+.glance-tb {
+    color: white;
+    padding-right: 0.5em;
+}
+
+.glance-tb p {
+    margin: 0;
+    line-height: 2.25em;
+    text-aligN: right;
 }
 
 .container {
@@ -75,23 +99,25 @@ body {
 /* Loding Circle */
 
 @keyframes loading-circle {
-  to {transform: rotate(360deg);}
+    to {
+        transform: rotate(360deg);
+    }
 }
- 
+
 .loading-circle:after {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top-color: #333;
-  animation: loading-circle .6s linear infinite;
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    animation: loading-circle .6s linear infinite;
 }
 
 /* Menubar buttons */
@@ -101,8 +127,49 @@ body {
 }
 
 /* More animations */
+
 @keyframes slide {
-    0% { background-position: 0 0; }
-    50% { background-position: -4000px 0; }
-    100% { background-position: 0 0; }
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: -4000px -4000px;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Custom scroll bar */
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f4f8f4;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #555;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Glance */
+.glance-object {
+    float: left;
+    line-height: 1.5em;
+    padding-left: .25em;
 }

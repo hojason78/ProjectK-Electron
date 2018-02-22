@@ -8,6 +8,7 @@
     <script type="text/javascript" src="./assets/javascript/main.js"></script>
     <script type="text/javascript" src="./assets/javascript/container.js"></script>
     <script type="text/javascript" src="./assets/javascript/wininteracter.js"></script>
+    <script type="text/javascript" src="./assets/javascript/taskbar.js"></script>
     <script type="text/javascript" src="./assets/javascript/alexa.js"></script>
     <script type="text/javascript" src="./assets/javascript/twitter.js"></script>
     <script type="text/javascript" src="./assets/javascript/debug.js"></script>
@@ -19,7 +20,14 @@
         <div class="menuBarWrapper">
             <ul class="menuList">
                 <lh><h2 class="menutitle">Project K</h2></lh>
-                <li class="bar-items"><i class="material-icon">settings</i></li>
+                <li class="bar-items glance">
+                    <div class="glance-tb">
+                        <i class="material-icons tb-wifi-status glance-object">wifi</i>
+                        <p class="tb-time glance-object">00:00</p>
+                    </div>
+                </li>
+                <li class="bar-items"><a class="power"><i class="material-icons">power_settings_new</i></a></li>
+                <li class="bar-items"><a class="settings"><i class="material-icons">settings</i></a></li>
             </ul>
         </div>
     </header>

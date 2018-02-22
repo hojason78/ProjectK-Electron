@@ -34,6 +34,7 @@ class Weather {
 
         weatherDataDiv = Util.makeElem("div");
         weatherDataDiv.className = "wData";
+        weatherDataDiv.style.pointerEvents = "none";
         weatherWin.appendChild(weatherDataDiv);
         
         // Location
@@ -170,7 +171,7 @@ class Weather {
         Weather.loadRandomPicture();
         weatherWin.style.backgroundAttachment = "fixed";
         weatherWin.style.backgroundPosition = "center";
-        weatherWin.style.animation = "slide 200s linear infinite";
+        weatherWin.style.animation = "slide 400s linear infinite";
         weatherWin.style.color = "white";
         weatherWin.style.width = "10em";
         weatherWin.style.height = "11em";

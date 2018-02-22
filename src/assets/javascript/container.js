@@ -56,7 +56,7 @@ function initContainers() {
             //currentContainer.style.transform = "translate(" + omm.clientX + "px, " + omm.clientY + "px)";
             //Working
             var l = omm.clientX - (currentContainer.clientWidth / 2);
-            var t = omm.clientY - 10;
+            var t = omm.clientY - ((currentContainer.clientHeight / 2) * .10);
             //Working
             //console.log("debug " + l + " " + t);
             //console.log("+ " + omm.clientX + " " + omm.clientY);
