@@ -31,7 +31,7 @@ function addListenerToAllContainers() {
                     currentContainer = currentContainer.parentElement;
                 }
             }
-            click = true;
+            clicked = true;
             if (parseInt(omd.srcElement.style.zIndex) < highestZI) {
                 omd.srcElement.style.zIndex = highestZI++;
             }

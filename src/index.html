@@ -4,6 +4,9 @@
 <head>
     <title>ProjectK-Electron</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
+    <!-- Electron scripts fix start -->
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <!-- Electron scripts fix end -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/main.js"></script>
     <script type="text/javascript" src="./assets/javascript/container.js"></script>
@@ -14,6 +17,9 @@
     <script type="text/javascript" src="./assets/javascript/debug.js"></script>
     <script type="text/javascript" src="./assets/javascript/weather.js"></script>
     <script type="text/javascript" src="./assets/javascript/news.js"></script>
+    <!-- Electron scripts fix start -->
+    <script>if (window.module) module = window.module;</script>
+    <!-- Electron scripts fix end -->
 </head>
 
 <body>
