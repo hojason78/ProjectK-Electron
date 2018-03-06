@@ -22,10 +22,10 @@ function trueReady() {
             console.log("No");
         }
     });*/
-    /*window.onmouseover = (e) => {
+    /*window.onmousemove = (e) => {
         var target = e.target || e.srcElement;
         console.log(target.tagName);
-        if(target.tagName === "HTML") {
+        if(target.tagName === "HTML" || target.tagName === "BODY") {
             console.log("Yes");
             ipcRenderer.send('window-not-background-unclick', "true");
         } else {
@@ -37,11 +37,12 @@ function trueReady() {
         var elementOvers = document.querySelectorAll(":hover");
         var elementOver = elementOvers[elementOvers.length-1];
         if(elementOver === undefined) return;
-        if(elementOver.tagName == "HTML") {
+        console.log(elementOver.tagName);
+        if(elementOver.tagName == "HTML" || elementOver.tagName == "BODY") {
             //console.log("YES!");
             ipcRenderer.send("toggle-clickthrough", "true");
         }
-    }, 100);
+    }, 1000);
 }
 
 function onReady() {

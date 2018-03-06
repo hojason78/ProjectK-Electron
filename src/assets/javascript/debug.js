@@ -22,6 +22,12 @@
             debugWindow.appendChild(split);
             debugWindow.appendChild(scriptInput);
             debugWindow.appendChild(scriptOutput);
+            // Close debug win
+            var button = Util.makeElemInner("button", "Close");
+            button.onclick = () => {
+                debugWindow.parentElement.outerHTML = "";
+            };
+            debugWindow.appendChild(button);
         }
         static enableDebug() {
             onloadfuncs.push(Debug.startDebug);
@@ -33,8 +39,9 @@
 
         static enableListenForDebugKeys() {
             setInterval(() => {
-                if (debugTogglePresses >= 7) {
+                if (debugTogglePresses >= 10) {
                     Debug.startDebug();
+                    debugTogglePresses = 0;
                 }
                 debugTogglePresses = 0;
             }, 3000);

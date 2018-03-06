@@ -5,7 +5,13 @@
     <title>ProjectK-Electron</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <!-- Electron scripts fix start -->
-    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+
+    </script>
     <!-- Electron scripts fix end -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/main.js"></script>
@@ -18,7 +24,10 @@
     <script type="text/javascript" src="./assets/javascript/weather.js"></script>
     <script type="text/javascript" src="./assets/javascript/news.js"></script>
     <!-- Electron scripts fix start -->
-    <script>if (window.module) module = window.module;</script>
+    <script>
+        if (window.module) module = window.module;
+
+    </script>
     <!-- Electron scripts fix end -->
 </head>
 
@@ -26,10 +35,12 @@
     <header class="header">
         <div class="menuBarWrapper">
             <ul class="menuList">
-                <lh><h2 class="menutitle">Project K</h2></lh>
+                <lh>
+                    <h2 class="menutitle">Project K</h2>
+                </lh>
                 <li class="bar-items glance">
                     <div class="glance-tb">
-                        <i class="material-icons tb-wifi-status glance-object">wifi</i>
+                        <i class="material-icons tb-wifi-status glance-object">wifi</i>&nbsp;&nbsp;&nbsp;
                         <p class="tb-time glance-object">00:00</p>
                     </div>
                 </li>
@@ -38,6 +49,18 @@
             </ul>
         </div>
     </header>
+    <!-- Header semi-tansparent hide on hover -->
+    <script>
+        document.getElementsByClassName("header")[0].onmouseover = (e) => {
+            document.getElementsByClassName("header")[0].style.opacity = "0.2";
+            document.getElementsByClassName("header")[0].style.pointerEvents = "none";
+            setTimeout(() => {
+                document.getElementsByClassName("header")[0].style.opacity = "0.9";
+                document.getElementsByClassName("header")[0].style.pointerEvents = "";
+            }, 3000);
+        }
+
+    </script>
     <section content="bodyContent">
         <div class="wrapper">
             <div class="canvas"></div>
