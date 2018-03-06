@@ -175,7 +175,8 @@ class Weather {
         weatherWin.style.color = "white";
         weatherWin.style.width = "10em";
         weatherWin.style.height = "11em";
-        weatherWin.style.border = "none";
+        weatherWin.parentElement.style.border = "none";
+        weatherWin.parentElement.style.borderRadius = "5px";
     }
 
     /*static detectAndLoad() {
@@ -197,7 +198,7 @@ class Weather {
     }*/
     
     static loadRandomPicture() {
-        weatherWin.style.backgroundImage = 'url("https://source.unsplash.com/random")';
+        weatherWin.style.backgroundImage = 'url("https://source.unsplash.com/collection/1364697")';
         // Temporary until I get unsplash api worked out
         
         /*$.get("https://source.unsplash.com/random", function(response) {

@@ -21,20 +21,20 @@ body {
     font-family: 'PT Sans', sans-serif;
     margin: 0;
     padding-left: 1em;
-    line-height: 2.2em;
     position: fixed;
     width: 99%;
-    bottom: 0;
+    top: 0;
+    opacity: 0.9;
 }
 
 .menuBarWrapper {
-    height: 2.2em;
+    height: 1.5em;
     padding: 0;
     overflow: hidden;
 }
 
 .menuList {
-    height: 2.5em;
+    height: 1.5em;
     margin: 0;
     padding: 0;
     color: white;
@@ -42,19 +42,18 @@ body {
 }
 
 .menutitle {
-    line-height: 2em;
-    font-size: 1.25em;
+    font-size: 1em;
     margin: 0;
     padding: 0;
     color: white;
     text-transform: uppercase;
     display: inline;
+    line-height: 1.5em;
 }
 
 .bar-items {
     float: right;
     text-align: center;
-    line-height: 3em;
     width: 3em;
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -72,8 +71,7 @@ body {
 
 .glance-tb p {
     margin: 0;
-    line-height: 2.25em;
-    text-aligN: right;
+    text-align: right;
 }
 
 .container {
@@ -133,7 +131,7 @@ body {
         background-position: 0 0;
     }
     50% {
-        background-position: -4000px -4000px;
+        background-position: -4000px -3000px;
     }
     100% {
         background-position: 0 0;
@@ -152,6 +150,7 @@ body {
 
 ::-webkit-scrollbar-track {
     background: #f4f8f4;
+    border-radius: 6px;
 }
 
 /* Handle */
@@ -170,6 +169,10 @@ body {
 /* Glance */
 .glance-object {
     float: left;
-    line-height: 1.5em;
     padding-left: .25em;
+}
+
+.material-icons {
+    font-size: 1em;
+    line-height: 1.5em;
 }

@@ -75,7 +75,7 @@ function initContainers() {
 
     document.onmouseup = (event) => {
         currentContainer = null;
-        click = false;
+        clicked = false;
     }
     addListenerToAllContainers();
     
