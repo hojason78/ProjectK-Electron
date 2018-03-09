@@ -45,7 +45,7 @@ class News {
     static displayResults(response) {
         News.window.innerHTML = "";
         var t = Util.makeElemInner("h2", "News");
-        t.style.margin = 0; t.style.color = "white";
+        t.style.margin = 0; t.style.color = "white"; t.style.pointerEvents = "none";
         News.window.appendChild(t);
         
         $(News.crp).find("item").each(function () {

@@ -42,7 +42,7 @@ function trueReady() {
             //console.log("YES!");
             ipcRenderer.send("toggle-clickthrough", "true");
         }
-    }, 1000);
+    }, 100);
 }
 
 function onReady() {
