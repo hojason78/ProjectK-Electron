@@ -15,6 +15,10 @@ before_install:
   - npm install -g electron-forge
   - ls
   - npm install
+  - ls
+  - ln -s ../node_modules node_modules
+  - ls ../
+  - ls
   - printf Y\n | electron-forge import .
 
 install:
