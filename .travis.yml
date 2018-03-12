@@ -11,6 +11,7 @@ os:
   - osx
 
 before_install:
+  - sudo apt-get install tree -y
   - npm install -g electron
   - npm install -g electron-forge
   - ls
