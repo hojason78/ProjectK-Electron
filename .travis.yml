@@ -13,7 +13,7 @@ os:
 before_install:
   - npm install -g electron
   - npm install -g electron-forge
-  - yes Y | electron-forge import .
+  - printf Y\n | electron-forge import .
 
 install:
   - electron-forge package
