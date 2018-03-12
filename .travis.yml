@@ -1,0 +1,18 @@
+osx_image: xcode8.3
+
+dist: trusty
+sudo: false
+
+language: node_js
+node_js: "8"
+
+os:
+  - linux
+  - osx
+
+before_install:
+  - npm install -g electron
+  - npm install -g electron-forge
+
+install:
+  - electron-forge package
