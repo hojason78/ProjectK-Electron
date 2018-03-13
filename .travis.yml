@@ -11,16 +11,14 @@ os:
   - osx
 
 before_install:
-  - sudo apt-get install tree -y
-  - npm install -g electron
-  - npm install -g electron-forge
+  - npm install -g electron --unsafe-perm=true --allow-root
+  - npm install -g electron-forge --unsafe-perm=true --allow-root
   - ls
   - npm install
   - ls
   - ln -s ../node_modules node_modules
   - ls ../
   - ls
-  - tree
 
 install:
   - electron-forge make
