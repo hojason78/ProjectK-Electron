@@ -60,6 +60,11 @@
         "eslint-config-airbnb": "^15.1.0",
         "eslint-plugin-import": "^2.8.0",
         "eslint-plugin-jsx-a11y": "^5.1.1",
-        "eslint-plugin-react": "^7.5.1"
+        "eslint-plugin-react": "^7.5.1",
+        "babel-core": "^6.17.0",
+        "babel-preset-react": "^6.16.0",
+        "meow": "^3.7.0",
+        "react": "^15.3.2",
+        "react-dom": "^15.3.2"
     }
 }
