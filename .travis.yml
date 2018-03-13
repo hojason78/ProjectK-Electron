@@ -14,20 +14,8 @@ os:
   - osx
 
 before_install:
-  - npm install -g electron --unsafe-perm=true --allow-root
-  - npm install -g electron-forge --unsafe-perm=true --allow-root
-  - npm install electron-compile
-  - npm install electron-compilers
-  - npm install electron-packager
-  - npm install react
-  - npm install babel
-  - ls
   - npm install
-  - ls
-  - ln -s ../node_modules node_modules
-  - ls ../
-  - ls
-  - printf Y\n | electron-forge import .
+  - electron-forge import .
 
 install:
-  - electron make
+  - electron-forge make
