@@ -30,4 +30,4 @@ before_install:
   - printf Y\n | electron-forge import .
 
 install:
-  - electron-forge make
+  - electron make
