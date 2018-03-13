@@ -20,8 +20,7 @@ before_install:
   - ln -s ../node_modules node_modules
   - ls ../
   - ls
-  - printf Y\n | electron-forge import .
   - tree
 
 install:
-  - electron-forge package
+  - electron-forge make
