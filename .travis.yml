@@ -19,6 +19,7 @@ before_install:
   - npm install electron-compile
   - npm install electron-compilers
   - npm install react
+  - npm install babel
   - ls
   - npm install
   - ls
