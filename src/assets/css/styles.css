@@ -76,8 +76,6 @@ body {
 }
 
 .container {
-    border: solid gray 0.5px;
-    border-radius: 0;
     min-height: 5em;
     min-width: 5em;
     width: auto;
@@ -89,8 +87,10 @@ body {
 }
 
 .contentContainer {
-    padding: 5px;
-    margin: 5px;
+    border-radius: 5px;
+    border: solid gray 0.5px;
+    padding: 0;
+    margin: 0;
     /*pointer-events: none;*/
     z-index: -1;
 }
@@ -144,26 +144,19 @@ body {
 /* width */
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: .5em;
 }
 
 /* Track */
 
 ::-webkit-scrollbar-track {
-    background: #f4f8f4;
-    border-radius: 6px;
+    display: none;
 }
 
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: #555;
-}
-
-/* Handle on hover */
-
-::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 

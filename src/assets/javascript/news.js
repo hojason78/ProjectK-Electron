@@ -16,6 +16,8 @@ class News {
         w.style.fontFamily = "Calibri";
         w.style.fontSize = ".7em";
         w.style.overflowY = "scroll";
+        w.style.border = "none";
+        w.style.margin = ".5em";
         var wp = News.window.parentElement;
         wp.style.backgroundColor = "rgb(37, 37, 37)";
         wp.style.borderColor = "orange";
@@ -35,7 +37,7 @@ class News {
         if(News.eo === undefined || News.eo === null) News.eo = true;
         if(News.eo) { e.style.backgroundColor = "rgba(119, 170, 119, 0.67)"; } else { e.style.backgroundColor = "rgba(119, 170, 119, 1)"; }
         News.eo = !News.eo;
-        e.style.width = "100%";
+        e.style.width = "96%";
         
         e.style.paddingLeft = ".25em";
         e.style.paddingRight = ".25em";

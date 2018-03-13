@@ -12,15 +12,14 @@ function addListenerToAllContainers() {
     for (var i = 0; i < containers.length; ++i) {
         var currentCont = containers[i];
         currentCont.style.zIndex = highestZI++;
-        if (currentCont.style.position !== "absolute") {
-            currentCont.style.position = "absolute";
-        }
-        if (currentCont.style.backgroundColor === "") {
-            currentCont.style.backgroundColor = "#FFF";
-        }
+        // Essential styles
+        currentCont.style.position = "absolute";
+        
+        if (currentCont.style.backgroundColor === "") { currentCont.style.backgroundColor = "#FFF"; }
+        // Resets position if it's not set
         if (currentCont.style.marginLeft === "" || currentCont.marginTop === "") {
             console.log("Undefined margins");
-            currentCont.style.marginLeft = "2em";
+            currentCont.style.marginLeft = "75%";
             currentCont.style.marginTop = (4 + (currentCont.style.height == "") ? ((highestZI == 1 || highestZI >= 5) ? 4 : highestZI * 6) : currentCont.style.minHeight) + "em";
         }
         currentCont.onmousedown = (omd) => {
