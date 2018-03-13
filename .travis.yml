@@ -1,3 +1,6 @@
+
+
+
 osx_image: xcode8.3
 
 dist: trusty
@@ -13,6 +16,8 @@ os:
 before_install:
   - npm install -g electron --unsafe-perm=true --allow-root
   - npm install -g electron-forge --unsafe-perm=true --allow-root
+  - npm install -g electron-compile
+  - npm install -g electron-compilers
   - ls
   - npm install
   - ls
