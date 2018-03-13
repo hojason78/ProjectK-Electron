@@ -18,6 +18,7 @@ before_install:
   - npm install -g electron-forge --unsafe-perm=true --allow-root
   - npm install electron-compile
   - npm install electron-compilers
+  - npm install react
   - ls
   - npm install
   - ls
