@@ -25,7 +25,7 @@ before_install:
   - ln -s ../node_modules node_modules
   - ls ../
   - ls
-  - electron-forge import .
+  - printf Y\n | electron-forge import .
 
 install:
   - electron-forge make
